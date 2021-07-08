@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon main.js",
-    "start": "yarn generate-data && node main.js",
+    "start": "yarn run generate-data && node main.js",
     "generate-data": "node generate-data.js"
   },
   "devDependencies": {

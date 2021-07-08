@@ -34,11 +34,13 @@ const randomDebtList = (size) => {
 
 // IIFE
 (function () {
-  const debtList = randomDebtList(10);
+  const debtList = randomDebtList(50);
   const db = {
-    dataDebts: debtList,
-    isFilterActive: false,
-    filterDebts: [],
+    debts: {
+      dataDebts: debtList,
+      isFilterActive: false,
+      filterDebts: [],
+    },
   };
   fs.writeFile('db.json', JSON.stringify(db), () => {
     console.log('Successfully');
