@@ -21,7 +21,7 @@ const randomDebtList = (size) => {
       interestRate: randomInterRestRate(),
       startDate: new Date(faker.date.past()),
       endDate: new Date(faker.date.future()),
-      oweMoney: faker.finance.account,
+      oweMoney: faker.finance.account(),
       isComplete: faker.datatype.boolean(),
       createdAt: Date.now(),
       updatedAt: Date.now(),
