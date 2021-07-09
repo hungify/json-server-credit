@@ -9,6 +9,23 @@ const randomInterRestRate = () => {
   return INTEREST_RATE[randomIndex];
 };
 
+const getDiffDays = (startDate, endDate) => {
+  if (startDate !== null && endDate !== null) {
+    startDate = new Date(startDate);
+    endDate = new Date(endDate);
+    let diffInTime = endDate.getTime() - startDate.getTime();
+    return diffInTime / (1000 * 3600 * 24);
+  }
+};
+
+const getLiabilities = (oweMoney, interestPercent, startDate, endDate) => {
+  if (oweMoney && interestPercent && startDate && endDate) {
+    parseFloat((interestPercent = interestPercent / 100));
+    const diffDays = getDiffDays(startDate, endDate);
+    return +oweMoney + +oweMoney * diffDays * interestPercent;
+  }
+};
+
 const randomDebtList = (size) => {
   if (size <= 0) return [];
 
@@ -19,14 +36,22 @@ const randomDebtList = (size) => {
       id: faker.datatype.uuid(),
       name: `${faker.name.firstName()} ${faker.name.lastName()}`,
       interestRate: randomInterRestRate(),
-      startDate: new Date(faker.date.past()),
-      endDate: new Date(faker.date.future()),
+      startDate: faker.date.past(),
+      endDate: faker.date.future(),
       oweMoney: faker.finance.account(),
       isComplete: faker.datatype.boolean(),
       createdAt: Date.now(),
       updatedAt: Date.now(),
     };
-    debtList.push(debt);
+
+    const liabilities = getLiabilities(
+      debt.oweMoney,
+      debt.interestRate,
+      debt.startDate,
+      debt.endDate
+    );
+    const newDebt = { ...debt, liabilities };
+    debtList.push(newDebt);
   });
 
   return debtList;
