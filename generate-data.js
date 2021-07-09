@@ -36,8 +36,8 @@ const randomDebtList = (size) => {
       id: faker.datatype.uuid(),
       name: `${faker.name.firstName()} ${faker.name.lastName()}`,
       interestRate: randomInterRestRate(),
-      startDate: new Date(faker.date.past()),
-      endDate: new Date(faker.date.future()),
+      startDate: faker.date.past(),
+      endDate: faker.date.future(),
       oweMoney: faker.finance.account(),
       isComplete: faker.datatype.boolean(),
       createdAt: Date.now(),
@@ -50,6 +50,7 @@ const randomDebtList = (size) => {
       debt.startDate,
       debt.endDate
     );
+    console.log(typeof debt.startDate);
     const newDebt = { ...debt, liabilities };
     debtList.push(newDebt);
   });
