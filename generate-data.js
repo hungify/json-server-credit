@@ -38,7 +38,7 @@ const randomDebtList = (size) => {
       interestRate: randomInterRestRate(),
       startDate: faker.date.past(),
       endDate: faker.date.future(),
-      oweMoney: faker.finance.account(),
+      oweMoney: Number.parseInt(faker.finance.account()),
       isComplete: faker.datatype.boolean(),
       createdAt: Date.now(),
       updatedAt: Date.now(),
@@ -50,7 +50,7 @@ const randomDebtList = (size) => {
       debt.startDate,
       debt.endDate
     );
-    console.log(typeof debt.startDate);
+
     const newDebt = { ...debt, liabilities };
     debtList.push(newDebt);
   });
@@ -60,13 +60,9 @@ const randomDebtList = (size) => {
 
 // IIFE
 (function () {
-  const debtList = randomDebtList(50);
+  const debtList = randomDebtList(100);
   const db = {
-    debts: {
-      dataDebts: debtList,
-      isFilterActive: false,
-      filterDebts: [],
-    },
+    dataDebts: debtList,
   };
   fs.writeFile('db.json', JSON.stringify(db), () => {
     console.log('Successfully');

@@ -1,13 +1,25 @@
 @baseUrl = http://localhost:3000/api
+@resourceName=dataDebts
 
-# @name getAllComments
-GET {{baseUrl}}/comments
+# @name getAll
+GET {{baseUrl}}/{{resourceName}}
+
+###
+
+# @name pagination
+
+GET {{baseUrl}}/{{resourceName}}?_page=2&_limit=10
+
+###
+
+# @name sort
+GET {{baseUrl}}/{{resourceName}}?_sort=interestRate&_order=asc
 
 ###
 
 
-# @name addNewComment
-POST {{baseUrl}}/comments
+# @name addNew
+POST {{baseUrl}}/{{resourceName}}
 Content-Type: application/json
 
 {
@@ -16,17 +28,17 @@ Content-Type: application/json
 
 ###
 
-# @name updateComment
-PATCH {{baseUrl}}/comments/5
+# @name update
+PATCH {{baseUrl}}/{{resourceName}}/3
 Content-Type: application/json
 
 {
-  "name": "new comment"
+  "name": "new "
 }
 
 
 ###
 
-# @name RemoveComment
-DELETE {{baseUrl}}/comments/3
+# @name Remove
+DELETE {{baseUrl}}/{{resourceName}}/3
 

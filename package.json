@@ -13,6 +13,7 @@
     "generate-data": "node generate-data.js"
   },
   "devDependencies": {
-    "nodemon": "^2.0.9"
+    "nodemon": "^2.0.9",
+    "query-string": "^7.0.1"
   }
 }

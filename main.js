@@ -2,14 +2,29 @@ const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
-
+const queryString = require('query-string');
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares);
 
 // Add custom routes before JSON Server router
-server.get('/echo', (req, res) => {
-  res.jsonp(req.query);
-});
+router.render = (req, res) => {
+  const headers = res.getHeaders();
+
+  const totalCountHeader = headers['x-total-count'];
+  if (req.method === 'GET' && totalCountHeader) {
+    const queryParams = queryString.parse(req._parsedUrl.query);
+    const result = {
+      dataDebts: res.locals.data,
+      pagination: {
+        _page: Number.parseInt(queryParams._page) || 1,
+        _limit: Number.parseInt(queryParams._limit) || 10,
+        _totalRows: Number.parseInt(totalCountHeader),
+      },
+    };
+    return res.json(result);
+  }
+  res.jsonp(res.locals.data);
+};
 
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
