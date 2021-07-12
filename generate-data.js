@@ -55,6 +55,10 @@ const randomDebtList = (size) => {
     debtList.push(newDebt);
   });
 
+  const debtListSorted = debtList.sort((debt) => {
+    return debt.isComplete ? 1 : -1;
+  });
+
   return debtList;
 };
 

@@ -12,6 +12,12 @@ GET {{baseUrl}}/{{resourceName}}?_page=2&_limit=10
 
 ###
 
+# @name filter
+
+GET {{baseUrl}}/{{resourceName}}?_page=1&name_like=An
+
+
+###
 # @name sort
 GET {{baseUrl}}/{{resourceName}}?_sort=interestRate&_order=asc
 
