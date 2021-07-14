@@ -8,18 +8,18 @@ GET {{baseUrl}}/{{resourceName}}
 
 # @name pagination
 
-GET {{baseUrl}}/{{resourceName}}?_page=2&_limit=10
+GET {{baseUrl}}/{{resourceName}}?_page=1&_limit=10
 
 ###
 
 # @name filter
 
-GET {{baseUrl}}/{{resourceName}}?_page=1&name_like=An
+GET {{baseUrl}}/{{resourceName}}?_page=1&name_like=Phú
 
 
 ###
 # @name sort
-GET {{baseUrl}}/{{resourceName}}?_sort=interestRate&_order=asc
+GET {{baseUrl}}/{{resourceName}}?_sort=createdAt&isComplete=false&_order=desc
 
 ###
 
@@ -29,22 +29,40 @@ POST {{baseUrl}}/{{resourceName}}
 Content-Type: application/json
 
 {
-  "name": "Hello world"
+
+      "id": "dfce-dada232sdasew",
+      "name": "HungSmeb",
+      "interestRate": 20,
+      "startDate": "2021-01-16T14:44:15.586Z",
+      "endDate": "2021-11-26T09:53:14.585Z",
+      "oweMoney": 93921547,
+      "isComplete": false,
+      "liabilities": 5988398485.113685
+
 }
 
 ###
 
 # @name update
-PATCH {{baseUrl}}/{{resourceName}}/3
+PATCH {{baseUrl}}/{{resourceName}}/c2c5a2b4-bb9d-4578-9a8e-26450cb809a8
 Content-Type: application/json
 
 {
-  "name": "new "
-}
+      "id": "c2c5a2b4-bb9d-4578-9a8e-26450cb809a8",
+      "name": "Phú Bình Phùng b",
+      "interestRate": 8,
+      "startDate": "2021-04-14T16:05:26.534Z",
+      "endDate": "2022-07-11T18:24:37.051Z",
+      "oweMoney": 54145556,
+      "isComplete": true,
+      "createdAt": 1626156527379,
+      "updatedAt": 1626156527379,
+      "liabilities": 2016799156.7231967
 
+}
 
 ###
 
 # @name Remove
-DELETE {{baseUrl}}/{{resourceName}}/3
+DELETE {{baseUrl}}/{{resourceName}}/44f38569-acd4-4965-ae67-c0dd2b48003f
 
